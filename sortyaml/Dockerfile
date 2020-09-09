@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-ruby
+FROM frolvlad/alpine-ruby:latest
 
 RUN gem install i18n_yaml_sorter
 
