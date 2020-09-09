@@ -1,6 +1,6 @@
-FROM frolvlad/alpine-ruby
+FROM alpine:3.12
 
-RUN gem install i18n_yaml_sorter
+RUN apk add --no-cache ruby ruby-bundler && gem install i18n_yaml_sorter
 
 WORKDIR /tmp
 
