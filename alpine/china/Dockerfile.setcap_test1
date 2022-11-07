@@ -1,0 +1,11 @@
+FROM alpine:3.16
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && apk update && apk add libcap strace
+
+RUN cp /bin/ping /tmp && setcap cap_net_raw+ep /tmp/ping
+
+ARG container_name=setcap_test1
+ARG uid=168001
+RUN echo "${uid}:x:${uid}:${uid}:An Identity for ${container_name}:/nonexistent:/bin/false" >>/etc/passwd \
+ && echo "${uid}:!::0:::::" >>/etc/shadow
+USER ${uid}
